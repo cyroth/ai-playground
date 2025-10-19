@@ -1,8 +1,8 @@
-## Gemini API Playground
+# Gemini API Playground
 
 This document serves as a playground for experimenting with the Gemini API.
 
-### Setup
+## Setup
 
 1. **Install the Google Generative AI library:**
 
