@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Website</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">💪 IronFit Gym</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#classes">Classes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#trainers">Trainers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#membership">Membership</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-center">
+        <div class="container">
+            <h1 class="display-3">Forge Your Strength</h1>
+            <p class="lead">Your journey to a stronger, healthier you starts here.</p>
+            <a href="#membership" class="btn btn-warning btn-lg">Join Now</a>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Our Services</h2>
+            <div class="row text-center">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-icon mb-3">🏋️</div>
+                    <h3>Personal Training</h3>
+                    <p>Get one-on-one guidance from our certified trainers to achieve your personal fitness goals.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-icon mb-3">🧘</div>
+                    <h3>Group Classes</h3>
+                    <p>From Yoga to HIIT, we have a wide range of group classes to keep you motivated and engaged.</p>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-icon mb-3">🥗</div>
+                    <h3>Nutrition Counseling</h3>
+                    <p>Our experts will help you create a diet plan that complements your workout routine for optimal results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Class Schedule Section -->
+    <section id="classes" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Weekly Class Schedule</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped text-center">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Time</th>
+                            <th>Monday</th>
+                            <th>Tuesday</th>
+                            <th>Wednesday</th>
+                            <th>Thursday</th>
+                            <th>Friday</th>
+                            <th>Saturday</th>
+                            <th>Sunday</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>8:00 AM - 9:00 AM</td>
+                            <td>Yoga</td>
+                            <td></td>
+                            <td>Yoga</td>
+                            <td></td>
+                            <td>Yoga</td>
+                            <td>HIIT</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>10:00 AM - 11:00 AM</td>
+                            <td></td>
+                            <td>Spin Class</td>
+                            <td></td>
+                            <td>Spin Class</td>
+                            <td></td>
+                            <td>Zumba</td>
+                            <td>Yoga</td>
+                        </tr>
+                        <tr>
+                            <td>6:00 PM - 7:00 PM</td>
+                            <td>Weightlifting</td>
+                            <td>HIIT</td>
+                            <td>Weightlifting</td>
+                            <td>HIIT</td>
+                            <td>Weightlifting</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trainers Section -->
+    <section id="trainers" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Meet Our Trainers</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="images/trainer-john.jpg" class="card-img-top" alt="Trainer John Carter">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">John Carter</h5>
+                            <p class="card-text">With over 10 years of experience, John specializes in personalized strength training and body conditioning. He's passionate about helping you build a solid foundation for a healthier life.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="images/trainer-sarah.jpg" class="card-img-top" alt="Trainer Sarah Lee">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Sarah Lee</h5>
+                            <p class="card-text">Sarah is our lead group fitness instructor. Her high-energy HIIT, Zumba, and Spin classes are legendary. She makes working out fun and effective for everyone, regardless of fitness level.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="images/trainer-mike.jpg" class="card-img-top" alt="Trainer Mike Chen">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Mike Chen</h5>
+                            <p class="card-text">A former competitive powerlifter, Mike is our resident weightlifting expert. He focuses on proper form and technique to help you safely reach new personal records and build serious strength.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container text-center">
+            <p>&copy; 2024 IronFit Gym. All Rights Reserved.</p>
+            <p>
+                <a href="#" class="text-white">Privacy Policy</a> | 
+                <a href="#" class="text-white">Terms of Use</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
