@@ -221,7 +221,6 @@ function renderHTML(output, formData) {
 
         ${output ? `
         <div id="generated-output" class="mt-5" role="region" aria-label="Generated output" tabindex="-1">
-          <h2>Generated Output</h2>
           <div class="card">
             <div class="card-body">
               ${output.map((line, index, array) => `
