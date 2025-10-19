@@ -220,7 +220,7 @@ function renderHTML(output, formData) {
         </form>
 
         ${output ? `
-        <div class="mt-5">
+        <div id="generated-output" class="mt-5" role="region" aria-label="Generated output" tabindex="-1">
           <h2>Generated Output</h2>
           <div class="card">
             <div class="card-body">
@@ -228,7 +228,7 @@ function renderHTML(output, formData) {
                 <div class="mb-2">
                   <label for="output-line-${index}" class="form-label small text-muted">${line.label}</label>
                   <div class="d-flex justify-content-between align-items-center">
-                    <code id="output-line-${index}" class="flex-grow-1 me-2">${line.content}</code>
+                    <code id="output-line-${index}" class="flex-grow-1 me-2" tabindex="0">${line.content}</code>
                     <button class="btn btn-sm btn-outline-secondary copy-btn" data-target="output-line-${index}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
                       <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
@@ -246,7 +246,14 @@ function renderHTML(output, formData) {
       </div>
       <footer class="footer mt-auto py-3">
         <div class="container text-center">
-          <span class="text-muted">Built with Gemini</span>
+          <span class="text-muted">Built with Gemini &amp; Copilot</span>
+          <span class="mx-2">|</span>
+          <a class="text-muted d-inline-flex align-items-center" href="https://github.com/cyroth/ai-playground/tree/master/javascript/warframe-bless-app" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true" focusable="false" class="me-1" style="flex: 0 0 auto;">
+              <path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38C13.71 14.53 16 11.54 16 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            View on GitHub
+          </a>
         </div>
       </footer>
 
@@ -293,6 +300,23 @@ function renderHTML(output, formData) {
             });
           });
         });
+        // If generated output exists, scroll it into view and focus for keyboard users
+        (function(){
+          var out = document.getElementById('generated-output');
+          if(out){
+            // Use requestAnimationFrame to wait for layout, then smooth scroll
+            requestAnimationFrame(function(){
+              try{
+                out.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                out.focus({ preventScroll: true });
+              }catch(e){
+                // fallback
+                out.scrollIntoView();
+                out.focus();
+              }
+            });
+          }
+        })();
       </script>
     </body>
   </html>
