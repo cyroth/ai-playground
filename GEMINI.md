@@ -37,7 +37,7 @@ import os
 genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 
 # Initialize the model
-model = genai.GenerativeModel('gemini-pro')
+model = genai.GenerativeModel('gemini-2.5-flash')
 
 # Generate content
 response = model.generate_content("Tell me a story about a brave knight.")
@@ -52,7 +52,7 @@ import os
 
 genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 
-model = genai.GenerativeModel('gemini-pro')
+model = genai.GenerativeModel('gemini-2.5-flash')
 chat = model.start_chat(history=[])
 
 print(chat.send_message("Hello, how are you?").text)
@@ -68,7 +68,7 @@ from PIL import Image
 
 genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
 
-model = genai.GenerativeModel('gemini-pro-vision')
+model = genai.GenerativeModel('gemini-2.5-flash')
 
 # Load an image (replace with your image path)
 img = Image.open('path/to/your/image.jpg')

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Warframe Bless Helper</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="display-4">Warframe Bless Helper</h1>
+      <p class="lead">Generate blessing messages for Warframe relays.</p>
+      
+      <form method="POST" class="mt-4">
+        <div class="card">
+          <div class="card-header">
+            Blessing Setup
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="region" class="form-label">Region</label>
+                <select class="form-select" id="region" name="region">
+                  <option value="as" {% if request.form.region == 'as' %}selected{% endif %}>Asia</option>
+                  <option value="eu" {% if request.form.region == 'eu' %}selected{% endif %}>Europe</option>
+                  <option value="na" {% if request.form.region == 'na' %}selected{% endif %}>North America</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="relay_name" class="form-label">Relay Name</label>
+                <select class="form-select" id="relay_name" name="relay_name">
+                  <option value="larunda" {% if request.form.relay_name == 'larunda' %}selected{% endif %}>Larunda</option>
+                  <option value="strata" {% if request.form.relay_name == 'strata' %}selected{% endif %}>Strata</option>
+                  <option value="kronia" {% if request.form.relay_name == 'kronia' %}selected{% endif %}>Kronia</option>
+                  <option value="maroo" {% if request.form.relay_name == 'maroo' %}selected{% endif %}>Maroo</option>
+                  <option value="orcus" {% if request.form.relay_name == 'orcus' %}selected{% endif %}>Orcus</option>
+                </select>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="relay_instance" class="form-label">Relay Instance</label>
+                <select class="form-select" id="relay_instance" name="relay_instance">
+                  <option value="1" {% if request.form.relay_instance == '1' %}selected{% endif %}>1</option>
+                  <option value="2" {% if request.form.relay_instance == '2' %}selected{% endif %}>2</option>
+                  <option value="3" {% if request.form.relay_instance == '3' %}selected{% endif %}>3</option>
+                  <option value="69" {% if request.form.relay_instance == '69' %}selected{% endif %}>69</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mt-4">
+          <div class="card-header">
+            Blessers
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="affinity_bless" class="form-label">Affinity</label>
+                <input type="text" class="form-control" id="affinity_bless" name="affinity_bless" placeholder="Username" value="{{ request.form.affinity_bless }}">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="credit_bless" class="form-label">Credit</label>
+                <input type="text" class="form-control" id="credit_bless" name="credit_bless" placeholder="Username" value="{{ request.form.credit_bless }}">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="resource_bless" class="form-label">Resource</label>
+                <input type="text" class="form-control" id="resource_bless" name="resource_bless" placeholder="Username" value="{{ request.form.resource_bless }}">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="damage_bless" class="form-label">Damage</label>
+                <input type="text" class="form-control" id="damage_bless" name="damage_bless" placeholder="Username" value="{{ request.form.damage_bless }}">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="health_bless" class="form-label">Health</label>
+                <input type="text" class="form-control" id="health_bless" name="health_bless" placeholder="Username" value="{{ request.form.health_bless }}">
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="shield_bless" class="form-label">Shield</label>
+                <input type="text" class="form-control" id="shield_bless" name="shield_bless" placeholder="Username" value="{{ request.form.shield_bless }}">
+              </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <label for="backup_bless" class="form-label">Backup</label>
+                    <input type="text" class="form-control" id="backup_bless" name="backup_bless" placeholder="Username" value="{{ request.form.backup_bless }}">
+                </div>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg mt-4">Generate</button>
+      </form>
+
+      {% if output %}
+      <div class="mt-5">
+        <h2>Generated Output</h2>
+        <div class="card">
+          <div class="card-body">
+            <pre class="mb-0"><code>{{ output }}</code></pre>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+    <footer class="footer mt-auto py-3 bg-light">
+      <div class="container text-center">
+        <span class="text-muted">Built with Gemini</span>
+      </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
