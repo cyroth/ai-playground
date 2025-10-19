@@ -1,0 +1,17 @@
+body {
+    background-image: url('https://images.pexels.com/photos/114119/pexels-photo-114119.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.social-media a {
+    font-size: 1.5rem;
+    color: #f8f9fa;
+    transition: color 0.3s;
+}
+
+.social-media a:hover {
+    color: #a9a9a9;
+}
