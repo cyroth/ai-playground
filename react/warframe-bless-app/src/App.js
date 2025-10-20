@@ -62,7 +62,8 @@ function App() {
 
     // Bot Command
     let blessCommand = `!bless ${formData.region} ${formData.relay_name} ${formData.relay_instance} ${wait_minutes} min `;
-    blessCommand += BLESS_TYPES.map(b => b.id).slice(0, activeBlesses.length).join(' ');
+    const activeBlessTypes = BLESS_TYPES.filter((_, i) => formData[`${BLESS_TYPES[i].id}_bless`]).map(b => b.id);
+    blessCommand += activeBlessTypes.join(' ');
     outputLines.push({ label: 'Bot Command', content: blessCommand });
 
     // Squad Message
