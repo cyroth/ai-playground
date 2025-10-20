@@ -25,6 +25,7 @@ function App() {
     backup_bless: ''
   });
   const [output, setOutput] = useState([]);
+  const [copiedIndex, setCopiedIndex] = useState(null);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -109,8 +110,10 @@ function App() {
     setOutput(outputLines);
   };
 
-  const copyToClipboard = (text) => {
+  const copyToClipboard = (text, index) => {
     navigator.clipboard.writeText(text);
+    setCopiedIndex(index);
+    setTimeout(() => setCopiedIndex(null), 1000);
   };
 
   return (
@@ -226,13 +229,13 @@ function App() {
                     <strong>{item.label}:</strong>
                     <button 
                       className="btn btn-sm btn-outline-secondary copy-btn"
-                      onClick={() => copyToClipboard(item.content)}
+                      onClick={() => copyToClipboard(item.content, index)}
                       title="Copy to clipboard"
                     >
-                      📋
+                      {copiedIndex === index ? '✓' : '📋'}
                     </button>
                   </div>
-                  <code className="d-block p-2 bg-light rounded">{item.content}</code>
+                  <div className="text-break p-2 rounded" style={{backgroundColor: 'var(--input-bg)', border: '1px solid var(--border)'}}>{item.content}</div>
                 </div>
               ))}
             </div>
