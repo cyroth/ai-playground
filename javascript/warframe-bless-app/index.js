@@ -21,27 +21,36 @@ export default {
       const health_bless = formData.get('health_bless');
       const shield_bless = formData.get('shield_bless');
       const backup_bless = formData.get('backup_bless');
-
+      
       const now = new Date();
       const nextHour = new Date(now.getFullYear(), now.getMonth(), now.getDate(), now.getHours() + 1, 0, 0, 0);
       const wait_minutes = Math.floor((nextHour - now) / 60000);
 
       const output_lines = []; // Will be an array of {label, content}
-      const active_blesses = [affinity_bless, credit_bless, resource_bless, damage_bless, health_bless, shield_bless, backup_bless].filter(Boolean);
+
+      // Create a more structured list of blessers and their roles
+      const blesser_assignments = [
+        { user: affinity_bless, type: BLESS_TYPES[0] }, // Affinity
+        { user: credit_bless, type: BLESS_TYPES[1] },   // Credit
+        { user: resource_bless, type: BLESS_TYPES[2] }, // Resource
+        { user: damage_bless, type: BLESS_TYPES[3] },   // Damage
+        { user: health_bless, type: BLESS_TYPES[4] },   // Health
+        { user: shield_bless, type: BLESS_TYPES[5] },   // Shield
+      ];
+
+      const active_blessers = blesser_assignments.filter(b => b.user);
 
       // 1. !bless command
+      const active_bless_ids = active_blessers.map(b => b.type.id).join(' ');
       let bless_command = `!bless ${region} ${relay_name} ${relay_instance} ${wait_minutes} min `;
-      bless_command += BLESS_TYPES.map(b => b.id).slice(0, active_blesses.length).join(' ');
+      bless_command += active_bless_ids;
       output_lines.push({ label: 'Bot Command', content: bless_command });
 
       // 2. Roles message
       let roles_message = "BLESSING ROLES: ";
-      if (affinity_bless) roles_message += `@${affinity_bless} -> ${BLESS_TYPES[0].name} | `;
-      if (credit_bless) roles_message += `@${credit_bless} -> ${BLESS_TYPES[1].name} | `;
-      if (resource_bless) roles_message += `@${resource_bless} -> ${BLESS_TYPES[2].name} | `;
-      if (damage_bless) roles_message += `@${damage_bless} -> ${BLESS_TYPES[3].name} | `;
-      if (health_bless) roles_message += `@${health_bless} -> ${BLESS_TYPES[4].name} | `;
-      if (shield_bless) roles_message += `@${shield_bless} -> ${BLESS_TYPES[5].name}  | `;
+      active_blessers.forEach(b => {
+        roles_message += `@${b.user} -> ${b.type.name} | `;
+      });
       if (backup_bless) roles_message += `@${backup_bless} -> Backup  | `;
       roles_message += `Blessing in ${wait_minutes} minutes`;
       output_lines.push({ label: 'Squad Message', content: roles_message });
@@ -49,19 +58,16 @@ export default {
       // 3. Nag whispers
       const region_map = {"as": "Asia", "eu": "Europe", "na": "NorthAmerica"};
       const region_full = region_map[region] || "Unknown";
-      const roll_call = [affinity_bless, credit_bless, resource_bless, damage_bless, health_bless, shield_bless].filter(Boolean);
       const nag_message = `Reminder for bless at ${relay_name.charAt(0).toUpperCase() + relay_name.slice(1)} ${relay_instance} in ${region_full} region. You'll be on`;
-      const blesser_data = [affinity_bless, credit_bless, resource_bless, damage_bless, health_bless, shield_bless];
-      blesser_data.forEach((blesser, i) => {
-        if (blesser) {
-          output_lines.push({ label: `Whisper ${blesser}`, content: `/w ${blesser} ${nag_message} ${BLESS_TYPES[i].name}` });
-        }
+      active_blessers.forEach(b => {
+        output_lines.push({ label: `Whisper ${b.user}`, content: `/w ${b.user} ${nag_message} ${b.type.name}` });
       });
 
       // 4. Roll call and thanks
-      if (roll_call.length > 0) {
-        output_lines.push({ label: 'Roll Call', content: 'Roll call. @' + roll_call.join(' @') + ' :clem:' });
-        output_lines.push({ label: 'Thank You', content: 'Thanks to ' + roll_call.join(', ') + ' for blessing' });
+      if (active_blessers.length > 0) {
+        const roll_call_users = active_blessers.map(b => b.user);
+        output_lines.push({ label: 'Roll Call', content: 'Roll call. @' + roll_call_users.join(' @') + ' :clem:' });
+        output_lines.push({ label: 'Thank You', content: 'Thanks to ' + roll_call_users.join(', ') + ' for blessing' });
       }
       
       const html = renderHTML(output_lines, formData);
