@@ -1,77 +1,61 @@
-# Gemini API Playground
+# Project Overview
 
-This document serves as a playground for experimenting with the Gemini API.
+This repository is a "playground" for AI-driven code generation and experimentation. It contains a variety of small, self-contained projects in different languages and frameworks. The projects are not directly related to each other but serve as test cases for AI-powered development.
 
-## Setup
+The main technologies and frameworks used in this repository are:
 
-1. **Install the Google Generative AI library:**
+*   **Python:** Flask
+*   **HTML/CSS:** Bootstrap
+*   **PowerShell**
 
+The overall architecture is a collection of independent projects, each in its own subdirectory.
+
+# Building and Running
+
+## Python/Flask (Warframe Bless App)
+
+1.  **Navigate to the project directory:**
     ```bash
-    pip install google-generativeai
+    cd python/warframe-bless-app-flask
+    ```
+2.  **Install dependencies:**
+    ```bash
+    pip install Flask
+    ```
+3.  **Run the application:**
+    ```bash
+    python app.py
+    ```
+The application will be available at `http://127.0.0.1:5000`.
+
+## HTML (Gym Website)
+
+1.  **Open the `gym.html` file in a web browser:**
+    ```bash
+    # Open the file directly or use a live server extension in your IDE.
+    # For example, with Python's built-in server:
+    cd html/gym
+    python -m http.server
+    ```
+    The website will be available at `http://localhost:8000/gym.html`.
+
+## PowerShell (Hello World)
+
+1.  **Navigate to the project directory:**
+    ```bash
+    cd powershell
+    ```
+2.  **Execute the script:**
+    ```powershell
+    ./hello-world.ps1
     ```
 
-2. **Get an API Key:**
+# Development Conventions
 
-    * Go to the [Google AI Studio](https://aistudio.google.com/).
-    * Create a new API key.
+Due to the nature of this repository as a collection of disparate experiments, there are no strict, repository-wide development conventions. Each project is self-contained and follows the conventions of its respective language or framework.
 
-3. **Configure your environment:**
+However, the following general principles can be observed:
 
-    Set your API key as an environment variable:
-
-    ```bash
-    export GOOGLE_API_KEY="YOUR_API_KEY"
-    ```
-
-    Replace `YOUR_API_KEY` with the key you obtained.
-
-### Examples
-
-#### 1. Text Generation
-
-```python
-import google.generativeai as genai
-import os
-
-# Configure the API key
-genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
-
-# Initialize the model
-model = genai.GenerativeModel('gemini-2.5-flash')
-
-# Generate content
-response = model.generate_content("Tell me a story about a brave knight.")
-print(response.text)
-```
-
-#### 2. Chat Conversation
-
-```python
-import google.generativeai as genai
-import os
-
-genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
-
-model = genai.GenerativeModel('gemini-2.5-flash')
-chat = model.start_chat(history=[])
-
-print(chat.send_message("Hello, how are you?").text)
-print(chat.send_message("What's your favorite color?").text)
-```
-
-#### 3. Multimodal Input (Image and Text)
-
-```python
-import google.generativeai as genai
-import os
-from PIL import Image
-
-genai.configure(api_key=os.environ["GOOGLE_API_KEY"])
-
-model = genai.GenerativeModel('gemini-2.5-flash')
-
-# Load an image (replace with your image path)
-img = Image.open('path/to/your/image.jpg')
-
-response = model.generate_content(["What is in this picture?", img])
-print(response.text)
+*   **Clear and descriptive naming:** File and directory names are generally indicative of their purpose (e.g., `warframe-bless-app-flask`, `gym`).
+*   **Standard project structures:** The projects follow common structural patterns for their respective ecosystems (e.g., the Flask app's `app.py` and `templates` directory).
+*   **Minimalism:** The projects are kept small and focused, each demonstrating a specific concept or technology.
