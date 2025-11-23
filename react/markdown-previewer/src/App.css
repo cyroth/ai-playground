@@ -1,0 +1,22 @@
+.app {
+  display: flex;
+  height: 100vh;
+}
+
+.textarea, .preview {
+  width: 50%;
+  padding: 20px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.textarea {
+  border: 1px solid #ccc;
+  font-family: monospace;
+  font-size: 16px;
+}
+
+.preview {
+  border: 1px solid #ccc;
+  border-left: none;
+}
